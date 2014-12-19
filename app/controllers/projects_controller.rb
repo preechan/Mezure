@@ -10,7 +10,12 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-
+        @channels_projects = ChannelsProjects.where('project_id' => params[:id])
+        @channels = Array.new
+        @channels_projects.each do |cp|
+          #@trade = Trade.find(ct["trade_id"])
+          @channels  << Channel.find(cp["channel_id"])
+        end
   end
 
   # GET /projects/new
