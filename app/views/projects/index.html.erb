@@ -9,6 +9,7 @@
         <th> Status </th>
         <th> Start Date </th>
         <th> End Date </th>
+        <th> Channels </th>
       </thead>
       <tr>
         <div class="row">
@@ -28,6 +29,12 @@
         <td>
           <p><%= project.enddate %></p>
         </td>
+         <td>
+        <% project.channels.each do 
+        |channel| %>
+        <%= channel.name %><%= "," unless channel == project.channels.last %>
+        <% end %>
+      </td>
 <td><%= link_to 'Show', project , class:"btn btn-link"%></td>
         <td><%= link_to 'Edit', edit_project_path(project), class:"btn btn-link" %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-link"%></td>

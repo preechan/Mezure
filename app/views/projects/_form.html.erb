@@ -31,7 +31,15 @@
     <%= f.label :status %><br>
     <%= f.text_field :status,class:"form-control" %>
   </div>
+  <div class="checkbox">
+    <strong> Channels </strong>
+  <ul style="list-style-type:none;">
+     <% @channels.each  do |channel| %>
+        <li> <%= check_box_tag  "channel_id[]",channel.id,(checked = true if @selectedchannels.collect{|c| c.id}.include?(channel.id)) %> <%= channel.name %> </li>
+    <%end%>
+  </ul>
+</div>
   <div class="form-group">
-    <%= f.submit class:"btn btn-primary"%>
+    <%= f.submit  "Save and Next",class:"btn btn-primary"%>
   </div>
 <% end %>

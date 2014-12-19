@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+
   end
 
   # GET /projects/new
@@ -19,16 +20,23 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @channels = Channel.all
+    @channels_projects = ChannelsProjects.where('project_id' => params[:id])
+    @selectedchannels = Array.new
+    @channels_projects.each do |ct|
+          @selectedchannels  << Channel.find(ct["channel_id"])
+    end
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
+  @channels = Channel.where(:id => params[:channel_id])
+    @project.channels << @channels 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to channel_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -40,6 +48,11 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+      @project = Project.find(params[:id])
+      @channels = Channel.where(:id => params[:channel_id])
+      @project.channels.destroy_all   #disassociate the already added organizers
+      @project.channels << @channels 
+      #associate the selected organizers to the event and create records in the join table
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
