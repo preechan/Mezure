@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219210054) do
+ActiveRecord::Schema.define(version: 20150107224503) do
 
   create_table "channels", force: true do |t|
     t.string   "name"
@@ -23,6 +23,30 @@ ActiveRecord::Schema.define(version: 20141219210054) do
   create_table "channels_projects", force: true do |t|
     t.integer  "project_id"
     t.integer  "channel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "kpis", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "weighting"
+    t.integer  "baseline"
+    t.integer  "target"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "metrics", force: true do |t|
+    t.string   "name"
+    t.integer  "channel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "metrics_projects", force: true do |t|
+    t.integer  "metric_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

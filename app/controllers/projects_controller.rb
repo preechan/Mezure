@@ -13,14 +13,21 @@ class ProjectsController < ApplicationController
         @channels_projects = ChannelsProjects.where('project_id' => params[:id])
         @channels = Array.new
         @channels_projects.each do |cp|
-          #@trade = Trade.find(ct["trade_id"])
           @channels  << Channel.find(cp["channel_id"])
+        end
+
+        @metrics_projects = MetricsProjects.where('project_id' => params[:id])
+        @metrics = Array.new
+        @metrics_projects.each do |cp|
+          @metrics  << Metric.find(cp["metric_id"])
         end
   end
 
   # GET /projects/new
   def new
     @project = Project.new
+    @channels = Channel.all
+     @selectedchannels = Array.new
   end
 
   # GET /projects/1/edit
@@ -41,7 +48,7 @@ class ProjectsController < ApplicationController
     @project.channels << @channels 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to channel_path, notice: 'Project was successfully created.' }
+        format.html { redirect_to metrics_path("project_id" => @project.id), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -60,7 +67,7 @@ class ProjectsController < ApplicationController
       #associate the selected organizers to the event and create records in the join table
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to metrics_path("project_id" => @project.id), notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }

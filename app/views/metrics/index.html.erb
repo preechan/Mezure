@@ -1,0 +1,27 @@
+<h1>Choose Metrics</h1>
+<%= form_tag select_metrics_path do %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+       <th> <input type="checkbox" id="selecctall"/> Select/Unselect All</th>
+      <th>Metrics</th>
+      <th>For Selected Channel</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @metrics.each do |metric| %>
+      <tr>
+         <td><%= check_box_tag "metric_ids[]", metric.id, (checked = true if @selectedmetrics.collect{|m| m.id}.include?(metric.id))%></td>
+        <td><%= metric.name %></td>
+        <td><%= metric.channel.name %></td>
+        <%= hidden_field_tag 'project_id', @project.id%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="form-group">
+    <%= submit_tag  "Save and Next",class:"btn btn-primary"%>
+  </div>
+<% end %>
+

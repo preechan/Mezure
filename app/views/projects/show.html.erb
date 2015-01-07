@@ -36,6 +36,18 @@
 </div>
 </p>
 </div>
+<div class="row">
+  <div class="col-md-12">
+  <p>
+  <h4>Metrics:</h4>
+</br>
+  <div class="col-md-4">
+  <% @metrics.each do |metric| %>
+  <%= metric.name %>  </br>
+  <% end %>
+</div>
+</p>
+</div>
 </div>
 <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-link" %> |
 <%= link_to 'Back', projects_path, class:"btn btn-link" %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  weighting: 1
+  baseline: 1
+  target: 1
+
+two:
+  title: MyString
+  description: MyString
+  weighting: 1
+  baseline: 1
+  target: 1
