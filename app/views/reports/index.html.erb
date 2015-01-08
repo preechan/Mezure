@@ -9,11 +9,13 @@
     </tr>
 
     <% @campaigns.each do |campaign| %>
+    <% if campaign['title'].downcase().include? @project.keyword.downcase() %>
     <tr>
-        <td><a href="/reports/<%= campaign['id'] %>"><%= campaign['title'] %></a></td>
+        <td><a href="/reports/<%= campaign['id'] %>?channel_id=<%= @channel.id %>&project_id=<%= @project.id %>"><%= campaign['title'] %></a></td>
         <td><%= campaign['type'] %></td>
         <td><%= campaign['send_time'] %></td>
     </tr>
+       <% end %>
     <% end %>
 
 </table>

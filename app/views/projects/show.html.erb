@@ -22,6 +22,10 @@
   <strong>Status:</strong>
   <%= @project.status %>
 </p>
+<p>
+  <strong>Keyword:</strong>
+  <%= @project.keyword %>
+</p>
 </div>
 </div>
 <div class="row">
@@ -31,7 +35,7 @@
 </br>
   <div class="col-md-4">
   <% @channels.each do |channel| %>
-  <%= channel.name %>   <%= link_to "Show Report",reports_path( :channel_id => channel.id),class:"btn btn-link" %></br>
+  <%= channel.name %>   <%= link_to "Show Report",reports_path( :channel_id => channel.id, :project_id => @project.id),class:"btn btn-link" %></br>
   <% end %>
 </div>
 </p>
@@ -49,6 +53,4 @@
 </p>
 </div>
 </div>
-<%= link_to 'Edit', edit_project_path(@project), class:"btn btn-link" %> |
-<%= link_to 'Back', projects_path, class:"btn btn-link" %>
 

@@ -1,55 +1,58 @@
 <% content_for :title, "Report for:  %s" % @campaign['title'] %>
 <h2>Report for:  <%= @campaign['title'] %></h2>
 
-<table class="table table-bordered">
+  <% @project.metrics.each do |metric|%>
+      <% if metric.name == "Hard Bounces" %>
+        <h3>Hard Bounces</h3>
+        <strong><%= @report['hard_bounces'] %></strong>
+        <% end %>
+         <% if metric.name == "Soft Bounces" %>
+         <h3>Soft Bounces</h3>
+        <strong> <%= @report['soft_bounces'] %></strong>
+         <% end %>
+           <% if metric.name == "Abuse Reports" %>
+         <h3>Abuse Reports</h3>
+        <strong> <%= @report['abuse_reports'] %></strong>
+         <% end %>
+         <% if metric.name == "Unsubscribes" %>
+         <h3>Unsubscribes</h3>
+         <strong><%= @report['unsubscribes'] %></strong>
+         <% end %>
 
-    <tr>
-        <th>Hard Bounces</th>
-        <th>Soft Bounces</th>
-        <th>Abuse Reports</th>
-        <th>Unsubscribes</th>
-    </tr>
+         <% if metric.name == "Opens" %>
+        <h3>Opens</h3>
+        <strong><%= @report['opens'] %></strong>
+        <% end %>
+         <% if metric.name == "Unique Opens" %>
+         <h3>Unique Opens</h3>
+        <strong> <%= @report['unique_opens'] %></strong>
+         <% end %>
+           <% if metric.name == "Last Open" %>
+         <h3>Last Open</h3>
+        <strong> <%= @report['last_open'] %></strong>
+         <% end %>
+         <% if metric.name == "Unsubscribes" %>
+         <h3>Unsubscribes</h3>
+         <strong><%= @report['unsubscribes'] %></strong>
+         <% end %>
 
-    <tr>
-        <td><%= @report['hard_bounces'] %></td>
-        <td><%= @report['soft_bounces'] %></td>
-        <td><%= @report['abuse_reports'] %></td>
-        <td><%= @report['unsubscribes'] %></td>
-    </tr>
 
-</table>
+         <% if metric.name == "Clicks" %>
+        <h3>Clicks</h3>
+        <strong><%= @report['clicks'] %></strong>
+        <% end %>
+         <% if metric.name == "Unique Clicks" %>
+         <h3>Unique Clicks</h3>
+        <strong> <%= @report['unique_clicks'] %></strong>
+         <% end %>
+           <% if metric.name == "Last Click" %>
+         <h3>Last Open</h3>
+        <strong> <%= @report['last_click'] %></strong>
+         <% end %>
+         <% if metric.name == "Users who Clicked" %>
+         <h3>Unsubscribes</h3>
+         <strong><%= @report['users_who_clicked'] %></strong>
+         <% end %>
+    <% end %>
 
-<table class="table table-bordered">
-
-    <tr>
-        <th>Opens</th>
-        <th>Unique Opens</th>
-        <th>Last Open</th>
-    </tr>
-
-    <tr>
-        <td><%= @report['opens'] %></td>
-        <td><%= @report['unique_opens'] %></td>
-        <td><%= @report['last_open'] %></td>
-    </tr>
-
-</table>
-
-<table class="table table-bordered">
-
-    <tr>
-        <th>Clicks</th>
-        <th>Unique Clicks</th>
-        <th>Last Click</th>
-        <th>Users who Clicked</th>
-    </tr>
-
-    <tr>
-        <td><%= @report['clicks'] %></td>
-        <td><%= @report['unique_clicks'] %></td>
-        <td><%= @report['last_click'] %></td>
-        <td><%= @report['users_who_clicked'] %></td>
-    </tr>
-
-</table>
 
