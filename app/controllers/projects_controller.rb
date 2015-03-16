@@ -4,7 +4,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if current_user != nil
+      @projects = Project.where('user_id' => current_user.id)
+    else 
+      redirect_to new_user_session_path
+    end
+
+
   end
 
   # GET /projects/1
@@ -44,7 +50,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-  @channels = Channel.where(:id => params[:channel_id])
+    @project.user_id = current_user.id
+    @channels = Channel.where(:id => params[:channel_id])
     @project.channels << @channels 
     respond_to do |format|
       if @project.save
